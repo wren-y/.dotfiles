@@ -1,0 +1,173 @@
+@import "xresources"
+
+* {
+    background-color: transparent;
+    accent-color: @color2;
+    status-line-bg: @accent-color;
+    status-line-fg: @background;
+    text-color: @foreground;
+    text-element-selected-color: @accent-color;
+    text-button-color: @background;
+    text-button-selected-color: @foreground;
+    text-size: 14px;
+    text-padding: 2em;
+    button-spacing: 5px;
+    button-spacing-padding-right: 0 5px 0 0;
+    button-spacing-padding-left: 0 0 0 5px;
+    font: "Terminus Bold 14";
+    
+}
+
+/*
+  content on top, statusline, inputbar on bottom
+*/
+configuration
+{
+    display-window: "[window]";
+    display-drun: "[drun]";
+    display-run: "[run]";
+    display-ssh: "[ssh]";
+}
+mainbox
+{
+    orientation: vertical;
+    children: [listview,
+	       status-bar,
+	       inputbar];
+}
+
+listview {
+    layout: vertical;
+}
+
+/* global format */
+element selected {}
+element-text selected {text-color: @text-element-selected-color;}
+button
+{
+    expand:false;
+    text-color: @text-button-color;
+}
+button selected
+{
+    expand:false;
+    text-color: @text-button-selected-color;
+}
+textbox-current-entry
+{
+    expand:true;
+    background-color: inherit;
+    text-color: inherit;
+}
+num-rows
+{
+    background-color: inherit;
+    text-color: inherit;
+}
+num-filtered-rows
+{
+    background-color: inherit;
+    text-color: inherit;
+}
+prompt
+{
+    background-color: inherit;
+    text-color: inherit;
+    
+}
+window {
+    background-color: @background;
+    width: 40%;
+}
+inputbar {
+    children: [entry];
+}
+/* status bar */
+status-bar
+{
+    height: @text-padding;
+    orientation: horizontal;
+    expand:false;
+    width: 100%;
+    background-color: @status-line-bg;
+    text-color: @status-line-fg;
+    spacing: 0;
+    children: [mode-switcher,
+	       spacer-generic,
+	       mode-line-wrapper];
+}
+mode-switcher
+{
+    expand: false;
+    background-color: @status-line-bg;
+    spacing: @button-spacing;
+    padding: @button-spacing-padding-left;
+}
+
+/* current entry wrapper stuff */
+current-entry-wrapper
+{
+    spacing: 0;
+    expand:true;
+    orientation:horizontal;
+    children: [
+	/*textbox-current-entry-static,*/
+	       textbox-current-entry];
+    background-color: @status-line-bg;
+    text-color: @status-line-fg;
+}
+
+
+/* mode-line */
+mode-line-wrapper {
+
+    expand:false;
+    orientation:horizontal;
+    background-color: @status-line-bg;
+    text-color: @status-line-fg;
+    
+    children: [textbox-mode-line-left,
+	       prompt,
+	       textbox-mode-spacer,
+	       num-filtered-rows,
+	       textbox-mode-spacer,
+	       num-rows,
+	      textbox-mode-line-right];
+}
+
+/* spacer stuff */
+
+textbox-mode-line-left {
+    content: "|";
+    expand:false;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+textbox-mode-line-right {
+    content: "";
+    expand:false;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+textbox-mode-spacer {
+    content:" ";
+    expand:false;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+spacer-generic {
+    expand: true;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+textbox-current-entry-static
+{
+    expand:false;
+    content: "Selected: ";
+    background-color: inherit;
+    text-color: inherit;
+}

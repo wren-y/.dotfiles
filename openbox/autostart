@@ -1,0 +1,8 @@
+#!/bin/bash
+xrdb -load "$HOME/.Xresources"
+bg_color=$(xrdb -get root.background)
+if [[ "${bg_color}" != "" ]]; then
+	xsetroot -solid $bg_color
+else
+	echo "failed to color bg"
+fi
