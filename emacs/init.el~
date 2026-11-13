@@ -1,6 +1,0 @@
-(setq inhibit-startup-message t)
-(tooltip-mode -1) ; disables tooltips
-(tool-bar-mode -1) ; disables the tool-bar
-(menu-bar-mode -1) ; disables the menu-bar
-(add-to-list 'load-path "~/.emacs.d/manual-packages")
-(require 'xresources-theme.el)
